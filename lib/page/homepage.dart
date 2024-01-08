@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_day2/widgets/drawer.dart';
 // ignore: camel_case_types
 class homePage extends StatelessWidget {
-  const homePage({super.key});
+   homePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ String name="Flutter";
             child: Text("Hello $name.This $num challange."),
           ),
         ),
-        drawer: const Drawer(),
+        drawer: MyDrawer(),
       );
   }
 }
