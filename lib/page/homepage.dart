@@ -14,7 +14,7 @@ String name="Flutter";
         ),
         body: Center(
           child: Container(
-            child: Text("Hello $name.This my $num challange."),
+            child: Text("Hello $name.This $num challange."),
           ),
         ),
         drawer: const Drawer(),
