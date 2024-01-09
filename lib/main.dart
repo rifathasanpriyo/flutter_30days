@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_day2/page/homepage.dart';
 import 'package:flutter_day2/page/login_page.dart';
 import 'package:flutter_day2/utils/routes.dart';
+import 'package:flutter_day2/widgets/theme.dart';
 
 
 void main()
@@ -19,14 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // home: homePage(),
       themeMode: ThemeMode.light,
-      theme: ThemeData(
-        primarySwatch: Colors.red
-        
-      ),
+      theme: MyTheme.lightTheme(context),
       debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+      darkTheme: MyTheme.darkTheme(context),
       initialRoute: MyRoutes.homeRoute,
       routes: {
         // "/":(context) => LoginPage(),
