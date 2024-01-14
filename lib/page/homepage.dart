@@ -45,13 +45,48 @@ String name="Flutter";
         ),
         body:Padding(
           padding: const EdgeInsets.all(16.0),
-          child:(catalogModel.items!=null && catalogModel.items!.isNotEmpty)?ListView.builder(
-          itemCount: catalogModel.items?.length,
-           itemBuilder: (context, index) {
-             return ItemsWidget(item: catalogModel.items![index],);
-           },
-          
-          ):Center(child: CircularProgressIndicator()),
+          child:(catalogModel.items!=null && catalogModel.items!.isNotEmpty)?
+         GridView.builder(gridDelegate: 
+         SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+         mainAxisSpacing: 16,
+         crossAxisSpacing: 16,
+         ),
+          itemBuilder: (context,index)
+          {
+            final item=catalogModel.items![index];
+            return Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              
+              child: GridTile(
+                header: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Text(item.name,style: TextStyle(color: Colors.white),),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                  
+                  ),
+                child: Image.network(item.image),
+                footer: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Text(item.price.toString(),style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    ),
+                    ),
+                  decoration: BoxDecoration(
+                    color: Colors.black38,
+                  ),
+                  
+                  ),
+                )
+                );
+          }
+          ,itemCount:catalogModel.items?.length ,
+          )
+         :Center(child: CircularProgressIndicator()),
         ),
         drawer: MyDrawer(),
       );
