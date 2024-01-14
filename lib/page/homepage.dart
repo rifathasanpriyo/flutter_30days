@@ -21,15 +21,19 @@ void initState()
 }
 loadData()async
 {
+  await Future.delayed(Duration(seconds: 3));
   var catalogJson= await rootBundle.loadString("assets/file/catalog.json");
   var decodeData= jsonDecode(catalogJson);
   var products= decodeData["products"];
-  print(products);
+  catalogModel.items= List.from(products).map<Item>((item) => Item.fromMap(item)).toList();
+  setState(() {
+    
+  });
 }
   @override
   Widget build(BuildContext context) {
      int num=30;
-     final dummyList=List.generate(20, (index) => catalogModel.items[0]);
+     
 String name="Flutter";
 
 
@@ -41,13 +45,13 @@ String name="Flutter";
         ),
         body:Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-          itemCount: dummyList.length,
+          child:(catalogModel.items!=null && catalogModel.items!.isNotEmpty)?ListView.builder(
+          itemCount: catalogModel.items?.length,
            itemBuilder: (context, index) {
-             return ItemsWidget(item: dummyList[index],);
+             return ItemsWidget(item: catalogModel.items![index],);
            },
           
-          ),
+          ):Center(child: CircularProgressIndicator()),
         ),
         drawer: MyDrawer(),
       );
